@@ -7,8 +7,8 @@ export const GifExpertApp = () => {
 
     const onAddCategory = (NewCategory) => {
         console.log(NewCategory);
-
-        setCategories([...categories, NewCategory])
+        if ( categories.includes(NewCategory)) return;
+        setCategories([...categories, NewCategory]);
     }
 
     return (
@@ -20,6 +20,7 @@ export const GifExpertApp = () => {
             < AddCategory 
             // onAddCategories={ setCategories }
                 onNewCategory={ (value) => onAddCategory(value) }
+                
             />
 
             {/* <button onClick={ (event) => addCategories(event) }>Agregar</button> */}
