@@ -1,58 +1,30 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export const AddCategory = () => {
+export const AddCategory = ( {onAddCategories} ) => {
 
-  const [ inputValue, setInputValue ] = useState( [] );
-  
-  const onInputChange = ({ target }) => {
-    setInputValue(target.value)
-    console.log(inputValue);
-  }
+    const [inputValue, setImputValue] = useState([]);
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    // console.log(inputValue);
-  }
+    const onInputChange = ({target}) => {
+        // console.log(target.value)
+        setImputValue(target.value)
+    }
 
-  return (
-    <>
+    const onSubmit = (event) => {
+        event.preventDefault(); // Evita la recarga de la página
+        // console.log(inputValue);
+        if(inputValue.trim().length <= 1) return;
+        onAddCategories((categories) => [ inputValue, ...categories]);
+        setImputValue('');
+    }
 
-
-    <h3>Add Category</h3>
-
+    return (
         <form onSubmit={(event) => onSubmit(event)}>
             <input
-            type="text"
-            placeholder="Buscar Gifs"
-            value={inputValue}
-            onChange={ onInputChange} />
+                type="text"
+                placeholder='Buscar Gifs'
+                value={ inputValue }
+                onChange={ event => onInputChange(event) }
+            />
         </form>
-    </>
-  )
+    )
 }
-
-
-// import { useState } from "react";
-
-// export const AddCategory = () => {
-
-//   const [ inputValue, setInputValue ] = useState( [] );
-  
-//   const onInputChange = (event) => {
-//     setInputValue(event.target.value)
-//   }
-  
-//   return (
-//     <>
-//     <h3>Add Category</h3>
-
-//         <input type="text"
-//         placeholder="Buscar Gifs"
-//         value={inputValue}
-//         onChange={ (event) => onInputChange(event)} />
-//     </>
-//   )
-// }
-
-// export default AddCategory
-
