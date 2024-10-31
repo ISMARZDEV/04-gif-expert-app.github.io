@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const AddCategory = ( {onAddCategories} ) => {
+export const AddCategory = ( { onNewCategory} ) => {
 
     const [inputValue, setImputValue] = useState([]);
 
@@ -13,7 +13,8 @@ export const AddCategory = ( {onAddCategories} ) => {
         event.preventDefault(); // Evita la recarga de la página
         // console.log(inputValue);
         if(inputValue.trim().length <= 1) return;
-        onAddCategories((categories) => [ inputValue, ...categories]);
+        onNewCategory(inputValue.trim());
+        // onNewCategory((categories) => [ inputValue, ...categories]);
         setImputValue('');
     }
 
